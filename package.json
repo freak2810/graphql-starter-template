@@ -5,6 +5,10 @@
   "main": "dist/server.js",
   "author": "(Aditya Manikanth Rao <aditya.regalla@mocktheta.co>)",
   "license": "MIT",
+  "repository": {
+    "url": " https://github.com/freak2810/graphql-temlate.git",
+    "type": "github"
+  },
   "scripts": {
     "start": "cross-env NODE_ENV=production node dist/server.js",
     "dev": "yarn build && nodemon",
