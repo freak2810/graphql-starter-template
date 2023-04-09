@@ -6,12 +6,14 @@ import { loadFilesSync } from '@graphql-tools/load-files';
 import { mergeResolvers } from '@graphql-tools/merge';
 import chalk from 'chalk';
 import fs from 'fs';
+import gql from 'graphql-tag';
 import path from 'path';
+import { plugins } from 'src/utils/functions/plugins';
 import { Context } from 'src/utils/types/context';
 
 import { db } from './src/utils/functions/db';
 
-const typeDefs = `
+const typeDefs = gql`
   ${fs.readFileSync(path.resolve(path.join(__dirname, 'common/@generated/schema.graphql')).toString())}
 `;
 
@@ -25,8 +27,11 @@ const resolvers = () => {
 
 const start = async () => {
   const server = new ApolloServer<Context>({
+    status400ForVariableCoercionErrors: true,
+    plugins,
+
     schema: buildSubgraphSchema({
-      typeDefs: typeDefs as never,
+      typeDefs,
       resolvers: resolvers() as never,
     }),
   });
