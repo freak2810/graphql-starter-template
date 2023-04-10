@@ -2,7 +2,7 @@
 /*  eslint-disable */
 import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 import { Context } from 'src/utils/types/context';
-import { z } from 'zod';
+import { z } from 'zod'
 import { PhoneNumber } from 'libphonenumber-js';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -35,14 +35,15 @@ export type AdditionalEntityFields = {
   type?: InputMaybe<Scalars['String']>;
 };
 
+
+
 export type ResolverTypeWrapper<T> = Promise<T> | T;
+
 
 export type ResolverWithResolve<TResult, TParent, TContext, TArgs> = {
   resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
 };
-export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> =
-  | ResolverFn<TResult, TParent, TContext, TArgs>
-  | ResolverWithResolve<TResult, TParent, TContext, TArgs>;
+export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> = ResolverFn<TResult, TParent, TContext, TArgs> | ResolverWithResolve<TResult, TParent, TContext, TArgs>;
 
 export type ResolverFn<TResult, TParent, TContext, TArgs> = (
   parent: TParent,
@@ -89,11 +90,7 @@ export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
   info: GraphQLResolveInfo
 ) => Maybe<TTypes> | Promise<Maybe<TTypes>>;
 
-export type IsTypeOfResolverFn<T = {}, TContext = {}> = (
-  obj: T,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => boolean | Promise<boolean>;
+export type IsTypeOfResolverFn<T = {}, TContext = {}> = (obj: T, context: TContext, info: GraphQLResolveInfo) => boolean | Promise<boolean>;
 
 export type NextResolverFn<T> = () => Promise<T>;
 
@@ -104,6 +101,8 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
   context: TContext,
   info: GraphQLResolveInfo
 ) => TResult | Promise<TResult>;
+
+
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
@@ -136,87 +135,47 @@ export type UnionDirectiveArgs = {
   additionalFields?: Maybe<Array<Maybe<AdditionalEntityFields>>>;
 };
 
-export type UnionDirectiveResolver<
-  Result,
-  Parent,
-  ContextType = Context,
-  Args = UnionDirectiveArgs
-> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+export type UnionDirectiveResolver<Result, Parent, ContextType = Context, Args = UnionDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type AbstractEntityDirectiveArgs = {
   discriminatorField: Scalars['String'];
   additionalFields?: Maybe<Array<Maybe<AdditionalEntityFields>>>;
 };
 
-export type AbstractEntityDirectiveResolver<
-  Result,
-  Parent,
-  ContextType = Context,
-  Args = AbstractEntityDirectiveArgs
-> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+export type AbstractEntityDirectiveResolver<Result, Parent, ContextType = Context, Args = AbstractEntityDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type EntityDirectiveArgs = {
   embedded?: Maybe<Scalars['Boolean']>;
   additionalFields?: Maybe<Array<Maybe<AdditionalEntityFields>>>;
 };
 
-export type EntityDirectiveResolver<
-  Result,
-  Parent,
-  ContextType = Context,
-  Args = EntityDirectiveArgs
-> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+export type EntityDirectiveResolver<Result, Parent, ContextType = Context, Args = EntityDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type ColumnDirectiveArgs = {
   overrideType?: Maybe<Scalars['String']>;
 };
 
-export type ColumnDirectiveResolver<
-  Result,
-  Parent,
-  ContextType = Context,
-  Args = ColumnDirectiveArgs
-> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+export type ColumnDirectiveResolver<Result, Parent, ContextType = Context, Args = ColumnDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-export type IdDirectiveArgs = {};
+export type IdDirectiveArgs = { };
 
-export type IdDirectiveResolver<Result, Parent, ContextType = Context, Args = IdDirectiveArgs> = DirectiveResolverFn<
-  Result,
-  Parent,
-  ContextType,
-  Args
->;
+export type IdDirectiveResolver<Result, Parent, ContextType = Context, Args = IdDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type LinkDirectiveArgs = {
   overrideType?: Maybe<Scalars['String']>;
 };
 
-export type LinkDirectiveResolver<
-  Result,
-  Parent,
-  ContextType = Context,
-  Args = LinkDirectiveArgs
-> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+export type LinkDirectiveResolver<Result, Parent, ContextType = Context, Args = LinkDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-export type EmbeddedDirectiveArgs = {};
+export type EmbeddedDirectiveArgs = { };
 
-export type EmbeddedDirectiveResolver<
-  Result,
-  Parent,
-  ContextType = Context,
-  Args = EmbeddedDirectiveArgs
-> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+export type EmbeddedDirectiveResolver<Result, Parent, ContextType = Context, Args = EmbeddedDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type MapDirectiveArgs = {
   path: Scalars['String'];
 };
 
-export type MapDirectiveResolver<Result, Parent, ContextType = Context, Args = MapDirectiveArgs> = DirectiveResolverFn<
-  Result,
-  Parent,
-  ContextType,
-  Args
->;
+export type MapDirectiveResolver<Result, Parent, ContextType = Context, Args = MapDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['DateTime'], any> {
   name: 'DateTime';
@@ -262,6 +221,7 @@ export type DirectiveResolvers<ContextType = Context> = {
   map?: MapDirectiveResolver<any, any, ContextType>;
 };
 
+
 type Properties<T> = Required<{
   [K in keyof T]: z.ZodType<T[K], any, T[K]>;
 }>;
@@ -275,8 +235,8 @@ export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny
 export function AdditionalEntityFieldsSchema(): z.ZodObject<Properties<AdditionalEntityFields>> {
   return z.object<Properties<AdditionalEntityFields>>({
     path: z.string().nullish(),
-    type: z.string().nullish(),
-  });
+    type: z.string().nullish()
+  })
 }
 
 /**
