@@ -36,7 +36,6 @@ const config: CodegenConfig = {
           URL: 'string',
           PhoneNumber: 'PhoneNumber',
           PostalCode: 'string',
-          Password: 'string',
         },
         scalarSchemas: {
           DateTime: 'z.date()',
@@ -45,8 +44,6 @@ const config: CodegenConfig = {
           URL: 'z.string().url()',
           PhoneNumber: 'z.custom<PhoneNumber>((value) => value)',
           PostalCode: 'z.string()',
-          Password: 'z.string().regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?\\d)(?=.*?[!#$%&*?@^-]).{8,}$/)',
-          UserContact: 'z.string().or(z.custom<PhoneNumber>((value) => value))',
         },
         directives: {
           validation: {

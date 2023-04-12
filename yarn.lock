@@ -205,6 +205,13 @@
   dependencies:
     node-fetch "^2.6.1"
 
+"@as-integrations/aws-lambda@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.npmjs.org/@as-integrations/aws-lambda/-/aws-lambda-2.0.1.tgz#a4aec23b846dd08ec58d5684233850a193584ee1"
+  integrity sha512-zp4X2bMnjP9jQx8hbmKBimdGPU9YjnWk0Gi+9nHKPK95y1F1IFw2oR2IJvGN9rpcD4q1ycNcP7eMlPx8EcPIXw==
+  dependencies:
+    "@types/aws-lambda" "^8.10.106"
+
 "@aws-crypto/ie11-detection@^3.0.0":
   version "3.0.0"
   resolved "https://registry.npmjs.org/@aws-crypto/ie11-detection/-/ie11-detection-3.0.0.tgz#640ae66b4ec3395cee6a8e94ebcd9f80c24cd688"
@@ -2496,6 +2503,11 @@
   version "1.0.2"
   resolved "https://registry.npmjs.org/@tsconfig/recommended/-/recommended-1.0.2.tgz#1e198237225933e319718f082e78366e9f159d71"
   integrity sha512-dbHBtbWBOjq0/otpopAE02NT2Cm05Qe2JsEKeCf/wjSYbI2hz8nCqnpnOJWHATgjDz4fd3dchs3Wy1gQGjfN6w==
+
+"@types/aws-lambda@^8.10.106":
+  version "8.10.114"
+  resolved "https://registry.npmjs.org/@types/aws-lambda/-/aws-lambda-8.10.114.tgz#4048273ebcd517dd118ecaa34b1368d275b6c7ad"
+  integrity sha512-M8WpEGfC9iQ6V2Ccq6nGIXoQgeVc6z0Ngk8yCOL5V/TYIxshvb0MWQYLFFTZDesL0zmsoBc4OBjG9DB/4rei6w==
 
 "@types/babel__core@^7.1.14":
   version "7.20.0"
