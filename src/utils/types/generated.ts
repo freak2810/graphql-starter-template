@@ -107,29 +107,86 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  AdditionalEntityFields: AdditionalEntityFields;
+  String: ResolverTypeWrapper<Scalars['String']>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
   Email: ResolverTypeWrapper<Scalars['Email']>;
   JSON: ResolverTypeWrapper<Scalars['JSON']>;
   PhoneNumber: ResolverTypeWrapper<Scalars['PhoneNumber']>;
   PostalCode: ResolverTypeWrapper<Scalars['PostalCode']>;
   URL: ResolverTypeWrapper<Scalars['URL']>;
-  AdditionalEntityFields: AdditionalEntityFields;
-  String: ResolverTypeWrapper<Scalars['String']>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  AdditionalEntityFields: AdditionalEntityFields;
+  String: Scalars['String'];
   DateTime: Scalars['DateTime'];
   Email: Scalars['Email'];
   JSON: Scalars['JSON'];
   PhoneNumber: Scalars['PhoneNumber'];
   PostalCode: Scalars['PostalCode'];
   URL: Scalars['URL'];
-  AdditionalEntityFields: AdditionalEntityFields;
-  String: Scalars['String'];
+  Int: Scalars['Int'];
   Boolean: Scalars['Boolean'];
 };
+
+export type ColumnDirectiveArgs = {
+  overrideType?: Maybe<Scalars['String']>;
+};
+
+export type ColumnDirectiveResolver<
+  Result,
+  Parent,
+  ContextType = Context,
+  Args = ColumnDirectiveArgs
+> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type EmbeddedDirectiveArgs = {};
+
+export type EmbeddedDirectiveResolver<
+  Result,
+  Parent,
+  ContextType = Context,
+  Args = EmbeddedDirectiveArgs
+> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type ExternalDirectiveArgs = {};
+
+export type ExternalDirectiveResolver<
+  Result,
+  Parent,
+  ContextType = Context,
+  Args = ExternalDirectiveArgs
+> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type IdDirectiveArgs = {};
+
+export type IdDirectiveResolver<Result, Parent, ContextType = Context, Args = IdDirectiveArgs> = DirectiveResolverFn<
+  Result,
+  Parent,
+  ContextType,
+  Args
+>;
+
+export type ValidationDirectiveArgs = {
+  default?: Maybe<Scalars['String']>;
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Int']>;
+  pattern?: Maybe<Scalars['String']>;
+  requiredMessage?: Maybe<Scalars['String']>;
+  trim?: Maybe<Scalars['Boolean']>;
+  typeOf?: Maybe<Scalars['String']>;
+};
+
+export type ValidationDirectiveResolver<
+  Result,
+  Parent,
+  ContextType = Context,
+  Args = ValidationDirectiveArgs
+> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type UnionDirectiveArgs = {
   discriminatorField?: Maybe<Scalars['String']>;
@@ -167,26 +224,6 @@ export type EntityDirectiveResolver<
   Args = EntityDirectiveArgs
 > = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-export type ColumnDirectiveArgs = {
-  overrideType?: Maybe<Scalars['String']>;
-};
-
-export type ColumnDirectiveResolver<
-  Result,
-  Parent,
-  ContextType = Context,
-  Args = ColumnDirectiveArgs
-> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
-
-export type IdDirectiveArgs = {};
-
-export type IdDirectiveResolver<Result, Parent, ContextType = Context, Args = IdDirectiveArgs> = DirectiveResolverFn<
-  Result,
-  Parent,
-  ContextType,
-  Args
->;
-
 export type LinkDirectiveArgs = {
   overrideType?: Maybe<Scalars['String']>;
 };
@@ -196,15 +233,6 @@ export type LinkDirectiveResolver<
   Parent,
   ContextType = Context,
   Args = LinkDirectiveArgs
-> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
-
-export type EmbeddedDirectiveArgs = {};
-
-export type EmbeddedDirectiveResolver<
-  Result,
-  Parent,
-  ContextType = Context,
-  Args = EmbeddedDirectiveArgs
 > = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type MapDirectiveArgs = {
@@ -252,13 +280,15 @@ export type Resolvers<ContextType = Context> = {
 };
 
 export type DirectiveResolvers<ContextType = Context> = {
+  column?: ColumnDirectiveResolver<any, any, ContextType>;
+  embedded?: EmbeddedDirectiveResolver<any, any, ContextType>;
+  external?: ExternalDirectiveResolver<any, any, ContextType>;
+  id?: IdDirectiveResolver<any, any, ContextType>;
+  validation?: ValidationDirectiveResolver<any, any, ContextType>;
   union?: UnionDirectiveResolver<any, any, ContextType>;
   abstractEntity?: AbstractEntityDirectiveResolver<any, any, ContextType>;
   entity?: EntityDirectiveResolver<any, any, ContextType>;
-  column?: ColumnDirectiveResolver<any, any, ContextType>;
-  id?: IdDirectiveResolver<any, any, ContextType>;
   link?: LinkDirectiveResolver<any, any, ContextType>;
-  embedded?: EmbeddedDirectiveResolver<any, any, ContextType>;
   map?: MapDirectiveResolver<any, any, ContextType>;
 };
 
@@ -278,6 +308,12 @@ export function AdditionalEntityFieldsSchema(): z.ZodObject<Properties<Additiona
     type: z.string().nullish(),
   });
 }
+
+/**
+ * @typedef {Object} AdditionalEntityFields
+ * @property {string} [path]
+ * @property {string} [type]
+ */
 
 /**
  * JavaScript Date instances and timestamps (represented as 32-bit signed integers) are coerced to RFC 3339 compliant date-time strings. Invalid Date instances raise a field error.
@@ -307,10 +343,4 @@ export function AdditionalEntityFieldsSchema(): z.ZodObject<Properties<Additiona
 /**
  * A field whose value conforms to the standard URL format as specified in {@link https://www.ietf.org/rfc/rfc3986.txt RFC3986}, and it uses real JavaScript URL objects.
  * @typedef {*} URL
- */
-
-/**
- * @typedef {Object} AdditionalEntityFields
- * @property {string} [path]
- * @property {string} [type]
  */

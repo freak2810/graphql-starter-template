@@ -81,7 +81,7 @@
     "watch": [
       "."
     ],
-    "ext": "ts,json",
+    "ext": "ts,json,graphql",
     "exec": "yarn compile && node dist/server.js || exit 1"
   }
 }

@@ -73,10 +73,6 @@ const config: CodegenConfig = {
         },
       },
     },
-
-    'dist/common/@generated/schema.graphql': {
-      plugins: ['schema-ast'],
-    },
   },
 };
 

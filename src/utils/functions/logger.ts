@@ -12,6 +12,7 @@ export const errorLogger = (error: unknown): ApolloError => {
 
     return error;
   }
+
   if (error instanceof ZodError) {
     console.error(
       chalk.hex('#e41749')(
