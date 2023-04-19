@@ -8,14 +8,28 @@ import path from 'path';
 
 import { plugins } from '../functions/plugins';
 import { Context } from '../types/context';
+import { env } from './env';
 
-const appResolvers = loadFilesSync(path.join(__dirname, '../../', './src/**/*.resolver.js'));
+const { NODE_ENV } = env;
+
+const appResolvers =
+  NODE_ENV === 'production'
+    ? loadFilesSync(path.join(__dirname, '../../', './src/**/*.resolver.js'))
+    : loadFilesSync(path.join(__dirname, '../../', '**/*.resolver.ts'));
+
 export const resolvers = mergeResolvers(appResolvers);
 
-const schemas = loadFilesSync(path.join(__dirname, '../../../../', './src/**/*.graphql'));
+console.log(path.join(__dirname, '../../', '**/*.resolver.ts'));
+
+const schemas =
+  NODE_ENV === 'production'
+    ? loadFilesSync(path.join(__dirname, '../../../../', './src/**/*.graphql'))
+    : loadFilesSync(path.join(__dirname, '../../', '**/*.graphql'));
+
 const directiveTypeDefinition = gql`
   directive @entity(embedded: Boolean, additionalFields: [AdditionalEntityFields]) on OBJECT
 `;
+
 export const schema = mergeTypeDefs([...schemas, directiveTypeDefinition]);
 
 export const server = new ApolloServer<Context>({

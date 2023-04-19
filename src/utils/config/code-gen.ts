@@ -28,7 +28,7 @@ const config: CodegenConfig = {
         enumsAsString: false,
         objectIdType: 'string',
         schema: 'zod',
-        contextType: 'src/utils/types/context#Context',
+        contextType: './context#Context',
         scalars: {
           DateTime: 'Date',
           JSON: 'Record<string | number, any>',

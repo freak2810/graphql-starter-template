@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "baseUrl": ".",
     "target": "ES6",
     "strict": true,
     "jsx": "react",
@@ -13,13 +12,10 @@
     "module": "CommonJS",
     "sourceMap": true,
     "sourceRoot": "/",
-    "allowUnreachableCode": false,
-    "paths": {
-      "src/*": ["src/*"]
-    }
+    "allowUnreachableCode": false
   },
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Recommended",
-  "include": ["**/*.ts", "server.js"],
+  "include": ["**/*.ts", "server.js", "globals.d.ts"],
   "exclude": ["node_modules/**/*", "**/*.spec.ts"]
 }

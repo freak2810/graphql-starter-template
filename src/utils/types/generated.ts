@@ -1,7 +1,7 @@
 /* eslint-disable unicorn/no-abusive-eslint-disable */
 /*  eslint-disable */
 import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
-import { Context } from 'src/utils/types/context';
+import { Context } from './context';
 import { z } from 'zod';
 import { PhoneNumber } from 'libphonenumber-js';
 export type Maybe<T> = T | null;

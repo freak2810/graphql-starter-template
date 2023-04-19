@@ -2,7 +2,8 @@
 import { GraphQLScalarType, Kind } from 'graphql';
 import { DateTimeResolver, EmailAddressResolver, JSONResolver, PostalCodeResolver, URLResolver } from 'graphql-scalars';
 import { parsePhoneNumber, PhoneNumber } from 'libphonenumber-js';
-import { ValidationError } from 'src/utils/functions/errors';
+
+import { ValidationError } from '../../utils/functions/errors';
 
 const PhoneNumberResolver = new GraphQLScalarType<PhoneNumber | undefined, string>({
   name: 'PhoneNumber',
