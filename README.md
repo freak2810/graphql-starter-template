@@ -2,6 +2,12 @@
 
 This is a starter template containing all the required tools to build a backend application using graphql.
 
+## Getting Started
+
+```
+git clone https://github.com/freak2810/graphql-starter-template.git
+```
+
 ## Built with
 
 - [NodeJS](https://nodejs.org/en)
@@ -33,8 +39,6 @@ This is a starter template containing all the required tools to build a backend 
 ### 20th April, 2023
 
 - Added `ts-node` to the dev dependencies. This is now used to run the development server.
-
-<br/>
 
 ## Author
 
