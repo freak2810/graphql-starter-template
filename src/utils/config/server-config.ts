@@ -14,12 +14,10 @@ const { NODE_ENV } = env;
 
 const appResolvers =
   NODE_ENV === 'production'
-    ? loadFilesSync(path.join(__dirname, '../../', './src/**/*.resolver.js'))
-    : loadFilesSync(path.join(__dirname, '../../', '**/*.resolver.ts'));
+    ? loadFilesSync(path.join(__dirname, '../../../', './src/**/*.resolver.js'))
+    : loadFilesSync(path.join(__dirname, '../../../../', '**/*.resolver.ts'));
 
 export const resolvers = mergeResolvers(appResolvers);
-
-console.log(path.join(__dirname, '../../', '**/*.resolver.ts'));
 
 const schemas =
   NODE_ENV === 'production'

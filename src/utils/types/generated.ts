@@ -35,6 +35,11 @@ export type AdditionalEntityFields = {
   type?: InputMaybe<Scalars['String']>;
 };
 
+export type Query = {
+  __typename?: 'Query';
+  hello: Scalars['String'];
+};
+
 export type ResolverTypeWrapper<T> = Promise<T> | T;
 
 export type ResolverWithResolve<TResult, TParent, TContext, TArgs> = {
@@ -114,6 +119,7 @@ export type ResolversTypes = {
   JSON: ResolverTypeWrapper<Scalars['JSON']>;
   PhoneNumber: ResolverTypeWrapper<Scalars['PhoneNumber']>;
   PostalCode: ResolverTypeWrapper<Scalars['PostalCode']>;
+  Query: ResolverTypeWrapper<{}>;
   URL: ResolverTypeWrapper<Scalars['URL']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
@@ -128,6 +134,7 @@ export type ResolversParentTypes = {
   JSON: Scalars['JSON'];
   PhoneNumber: Scalars['PhoneNumber'];
   PostalCode: Scalars['PostalCode'];
+  Query: {};
   URL: Scalars['URL'];
   Int: Scalars['Int'];
   Boolean: Scalars['Boolean'];
@@ -266,6 +273,13 @@ export interface PostalCodeScalarConfig extends GraphQLScalarTypeConfig<Resolver
   name: 'PostalCode';
 }
 
+export type QueryResolvers<
+  ContextType = Context,
+  ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']
+> = {
+  hello?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+};
+
 export interface UrlScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['URL'], any> {
   name: 'URL';
 }
@@ -276,6 +290,7 @@ export type Resolvers<ContextType = Context> = {
   JSON?: GraphQLScalarType;
   PhoneNumber?: GraphQLScalarType;
   PostalCode?: GraphQLScalarType;
+  Query?: QueryResolvers<ContextType>;
   URL?: GraphQLScalarType;
 };
 
@@ -338,6 +353,11 @@ export function AdditionalEntityFieldsSchema(): z.ZodObject<Properties<Additiona
 /**
  * A field whose value conforms to the Postal Code of the Address component
  * @typedef {*} PostalCode
+ */
+
+/**
+ * @typedef {Object} Query
+ * @property {string} hello
  */
 
 /**

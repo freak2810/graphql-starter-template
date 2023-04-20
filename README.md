@@ -25,14 +25,15 @@ This is a starter template containing all the required tools to build a backend 
 
 ## Updates
 
-<br/>
-
 ### 17th April, 2023
 
 - Updated the codegen to use `mergeTypeDefs` instead of `graphql-ast`. Now graphql schema is updated on the fly, but still requires a restart if the types need to be updated.
 - Updated directives to support proper schema generation with mongo-db related directives and zod validations.
 
-<br/>
+### 20th April, 2023
+
+- Added `ts-node` to the dev dependencies. This is now used to run the development server.
+
 <br/>
 
 ## Author
