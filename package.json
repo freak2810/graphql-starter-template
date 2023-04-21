@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "GraphQL + MongoDB + Zod + TS Code-gen + Jest",
   "main": "dist/server.js",
-  "author": "(Aditya Manikanth Rao <aditya.regalla@mocktheta.co>)",
+  "author": "(Aditya Manikanth Rao <adityamanikanthrao@gmail.com> <aditya.regalla@mocktheta.co>)",
   "license": "MIT",
   "repository": {
-    "url": " https://github.com/freak2810/graphql-template.git",
+    "url": "https://github.com/freak2810/graphql-template.git",
     "type": "github"
   },
   "scripts": {
