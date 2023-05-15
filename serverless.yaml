@@ -1,4 +1,7 @@
 service: lambda-template
+plugins:
+  - serverless-ignore
+  - serverless-dotenv-plugin
 provider:
   name: aws
   runtime: nodejs16.x

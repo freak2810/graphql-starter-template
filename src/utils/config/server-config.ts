@@ -25,6 +25,11 @@ const schemas =
     : loadFilesSync(path.join(__dirname, '../../', '**/*.graphql'));
 
 const directiveTypeDefinition = gql`
+  input AdditionalEntityFields {
+    path: String
+    type: String
+  }
+
   directive @entity(embedded: Boolean, additionalFields: [AdditionalEntityFields]) on OBJECT
 `;
 

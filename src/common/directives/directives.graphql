@@ -15,8 +15,3 @@ directive @id on FIELD_DEFINITION
 directive @embedded on FIELD_DEFINITION | OBJECT
 
 directive @external on FIELD_DEFINITION | OBJECT
-
-input AdditionalEntityFields {
-  path: String
-  type: String
-}
