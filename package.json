@@ -23,7 +23,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@apollo/server": "^4.6.0",
+    "@apollo/server": "^4.7.4",
     "@apollo/subgraph": "^2.4.1",
     "@as-integrations/aws-lambda": "^2.0.1",
     "@graphql-tools/load-files": "^6.6.1",
