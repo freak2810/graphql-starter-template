@@ -13,16 +13,16 @@ import { env } from './env';
 const { NODE_ENV } = env;
 
 const appResolvers =
-  NODE_ENV === 'production'
-    ? loadFilesSync(path.join(__dirname, '../../../', './src/**/*.resolver.js'))
-    : loadFilesSync(path.join(__dirname, '../../', '**/*.resolver.ts'));
+  NODE_ENV === 'development'
+    ? loadFilesSync(path.join(__dirname, '../../', '**/*.resolver.ts'))
+    : loadFilesSync(path.join(__dirname, '../../../', './src/**/*.resolver.js'));
 
 export const resolvers = mergeResolvers(appResolvers);
 
 const schemas =
-  NODE_ENV === 'production'
-    ? loadFilesSync(path.join(__dirname, '../../../../', './src/**/*.graphql'))
-    : loadFilesSync(path.join(__dirname, '../../', '**/*.graphql'));
+  NODE_ENV === 'development'
+    ? loadFilesSync(path.join(__dirname, '../../', '**/*.graphql'))
+    : loadFilesSync(path.join(__dirname, '../../../../', './src/**/*.graphql'));
 
 const directiveTypeDefinition = gql`
   input AdditionalEntityFields {

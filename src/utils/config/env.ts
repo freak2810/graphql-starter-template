@@ -7,12 +7,12 @@ export const env = {
   PORT: process.env.PORT || '4000',
 
   DATABASE_URL: process.env.DATABASE_URL!,
-  DB_NAME: process.env.DB_NAME!,
+  DB_NAME: 'template',
 };
 
 export const testMongoConfig = {
   Memory: true,
   IP: '127.0.0.1',
   Port: '27017',
-  Database: 'some-db',
+  Database: 'test',
 };
