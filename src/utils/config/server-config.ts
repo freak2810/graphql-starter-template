@@ -6,6 +6,7 @@ import { mergeResolvers, mergeTypeDefs } from '@graphql-tools/merge';
 import { gql } from 'graphql-tag';
 import path from 'path';
 
+import { authorizationDirectiveTransformer } from '../../common/directives/directives.resolver';
 import { plugins } from '../functions/plugins';
 import { Context } from '../types/context';
 import { env } from './env';
@@ -33,13 +34,17 @@ const directiveTypeDefinition = gql`
   directive @entity(embedded: Boolean, additionalFields: [AdditionalEntityFields]) on OBJECT
 `;
 
-export const schema = mergeTypeDefs([...schemas, directiveTypeDefinition]);
+const typeDefs = mergeTypeDefs([...schemas, directiveTypeDefinition]);
+
+let schema = buildSubgraphSchema({
+  typeDefs,
+  resolvers: resolvers as never,
+});
+
+schema = authorizationDirectiveTransformer(schema, 'auth');
 
 export const server = new ApolloServer<Context>({
   status400ForVariableCoercionErrors: true,
   plugins,
-  schema: buildSubgraphSchema({
-    typeDefs: schema,
-    resolvers: resolvers as never,
-  }),
+  schema,
 });

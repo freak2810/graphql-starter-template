@@ -15,3 +15,10 @@ directive @id on FIELD_DEFINITION
 directive @embedded on FIELD_DEFINITION | OBJECT
 
 directive @external on FIELD_DEFINITION | OBJECT
+
+directive @auth(requires: Role = USER) on FIELD_DEFINITION | OBJECT | INPUT_OBJECT | INPUT_FIELD_DEFINITION
+
+enum Role {
+  ADMIN
+  USER
+}

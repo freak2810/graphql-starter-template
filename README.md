@@ -40,6 +40,16 @@ git clone https://github.com/freak2810/graphql-starter-template.git
 
 - Added `ts-node` to the dev dependencies. This is now used to run the development server.
 
+### 10th July, 2023
+
+- Added Role based Access Control mechanism for the project.
+- Minor fixes to some unused code.
+- Added github actions for CI/CD.
+  - Linting
+  - Testing
+  - Code coverage
+  - Deployment to AWS Lambda
+
 ## Author
 
 [Aditya Manikanth Rao](https://github.com/freak2810)

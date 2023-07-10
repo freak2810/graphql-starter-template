@@ -24,9 +24,11 @@ export const errorLogger = (error: unknown): ApolloError => {
         )
       )
     );
+
     return new UserInputError('Invalid input', error.issues);
   }
 
+  console.error(chalk.hex('#e41749')('Error:', JSON.stringify(error, null, 2)));
   return error as ApolloError;
 };
 

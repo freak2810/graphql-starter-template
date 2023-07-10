@@ -23,7 +23,17 @@ module.exports = {
       },
     },
   },
-  ignorePatterns: ['dist/**/*.js', '.eslintrc.js', '**/*.d.ts'],
+  ignorePatterns: [
+    'dist',
+    'node_modules',
+    '.eslintrc.js',
+    '**/*.d.ts',
+    'coverage',
+    '*.json',
+    'yarn.lock',
+    '*.yaml',
+    '*.md',
+  ],
   plugins: ['@typescript-eslint', 'import', 'simple-import-sort', 'prettier', 'no-secrets', 'jest'],
   rules: {
     // prettier
