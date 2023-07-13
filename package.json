@@ -19,7 +19,8 @@
     "code-gen": "yarn graphql-code-generator --config ./src/utils/config/code-gen.ts",
     "clean-install": "npx rimraf -f node_modules dist && yarn",
     "format": "prettier --write .",
-    "lint": "eslint --fix ./src/**/*"
+    "lint": "eslint --fix . --ext ts,graphql",
+    "deploy": "yarn build && serverless deploy"
   },
   "dependencies": {
     "@apollo/server": "^4.6.0",
