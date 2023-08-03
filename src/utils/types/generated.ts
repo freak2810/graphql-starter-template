@@ -30,14 +30,16 @@ export type Scalars = {
   URL: string;
 };
 
-export type AdditionalEntityFields = {
-  path?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<Scalars['String']>;
-};
-
 export type Query = {
   __typename?: 'Query';
   hello: Scalars['String'];
+};
+
+export type Role = 'ADMIN' | 'USER';
+
+export type AdditionalEntityFields = {
+  path?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['String']>;
 };
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
@@ -112,33 +114,45 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  AdditionalEntityFields: AdditionalEntityFields;
-  String: ResolverTypeWrapper<Scalars['String']>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
   Email: ResolverTypeWrapper<Scalars['Email']>;
   JSON: ResolverTypeWrapper<Scalars['JSON']>;
   PhoneNumber: ResolverTypeWrapper<Scalars['PhoneNumber']>;
   PostalCode: ResolverTypeWrapper<Scalars['PostalCode']>;
   Query: ResolverTypeWrapper<{}>;
+  String: ResolverTypeWrapper<Scalars['String']>;
+  Role: Role;
   URL: ResolverTypeWrapper<Scalars['URL']>;
+  AdditionalEntityFields: AdditionalEntityFields;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  AdditionalEntityFields: AdditionalEntityFields;
-  String: Scalars['String'];
   DateTime: Scalars['DateTime'];
   Email: Scalars['Email'];
   JSON: Scalars['JSON'];
   PhoneNumber: Scalars['PhoneNumber'];
   PostalCode: Scalars['PostalCode'];
   Query: {};
+  String: Scalars['String'];
   URL: Scalars['URL'];
+  AdditionalEntityFields: AdditionalEntityFields;
   Int: Scalars['Int'];
   Boolean: Scalars['Boolean'];
 };
+
+export type AuthDirectiveArgs = {
+  requires?: Maybe<Role>;
+};
+
+export type AuthDirectiveResolver<
+  Result,
+  Parent,
+  ContextType = Context,
+  Args = AuthDirectiveArgs
+> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type ColumnDirectiveArgs = {
   overrideType?: Maybe<Scalars['String']>;
@@ -295,6 +309,7 @@ export type Resolvers<ContextType = Context> = {
 };
 
 export type DirectiveResolvers<ContextType = Context> = {
+  auth?: AuthDirectiveResolver<any, any, ContextType>;
   column?: ColumnDirectiveResolver<any, any, ContextType>;
   embedded?: EmbeddedDirectiveResolver<any, any, ContextType>;
   external?: ExternalDirectiveResolver<any, any, ContextType>;
@@ -317,18 +332,14 @@ export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== und
 
 export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v));
 
+export const RoleSchema = z.enum(['ADMIN', 'USER']);
+
 export function AdditionalEntityFieldsSchema(): z.ZodObject<Properties<AdditionalEntityFields>> {
   return z.object<Properties<AdditionalEntityFields>>({
     path: z.string().nullish(),
     type: z.string().nullish(),
   });
 }
-
-/**
- * @typedef {Object} AdditionalEntityFields
- * @property {string} [path]
- * @property {string} [type]
- */
 
 /**
  * JavaScript Date instances and timestamps (represented as 32-bit signed integers) are coerced to RFC 3339 compliant date-time strings. Invalid Date instances raise a field error.
@@ -361,6 +372,16 @@ export function AdditionalEntityFieldsSchema(): z.ZodObject<Properties<Additiona
  */
 
 /**
+ * @typedef {("ADMIN"|"USER")} Role
+ */
+
+/**
  * A field whose value conforms to the standard URL format as specified in {@link https://www.ietf.org/rfc/rfc3986.txt RFC3986}, and it uses real JavaScript URL objects.
  * @typedef {*} URL
+ */
+
+/**
+ * @typedef {Object} AdditionalEntityFields
+ * @property {string} [path]
+ * @property {string} [type]
  */
