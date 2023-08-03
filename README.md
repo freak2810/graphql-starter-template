@@ -50,6 +50,12 @@ git clone https://github.com/freak2810/graphql-starter-template.git
   - Code coverage
   - Deployment to AWS Lambda
 
+### 3rd August, 2023
+
+- The database is directly takes from the uri provided in the environment variables.
+- Removed globals.d.ts file
+- Changed the type of URL from string to URL
+
 ## Author
 
 [Aditya Manikanth Rao](https://github.com/freak2810)
