@@ -17,7 +17,7 @@ export const startMongoTestServer = async () => {
 
 export const client: MongoClient = new MongoClient(env.DATABASE_URL);
 
-export const db = client.db(env.DB_NAME);
+export const db = client.db();
 
 if (process.env.NODE_ENV !== 'testing')
-  console.log(chalk.hex('#17b978')('🐣 MongoDB client connected! database:', env.DB_NAME));
+  console.log(chalk.hex('#17b978')('🐣 MongoDB client connected! database:', db.databaseName));

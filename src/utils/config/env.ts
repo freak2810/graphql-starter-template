@@ -7,7 +7,6 @@ export const env = {
   PORT: process.env.PORT || '4000',
 
   DATABASE_URL: process.env.DATABASE_URL!,
-  DB_NAME: 'template',
 };
 
 export const testMongoConfig = {
