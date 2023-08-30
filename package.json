@@ -36,7 +36,7 @@
     "graphql-scalars": "^1.21.3",
     "graphql-tag": "^2.12.6",
     "libphonenumber-js": "^1.10.26",
-    "mongodb": "^5.2.0",
+    "mongodb": "^5.8.0",
     "mongodb-memory-server": "^8.12.2",
     "zod": "^3.21.4"
   },
