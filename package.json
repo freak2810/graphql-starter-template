@@ -23,7 +23,7 @@
     "deploy": "yarn build && serverless deploy"
   },
   "dependencies": {
-    "@apollo/server": "^4.6.0",
+    "@apollo/server": "^4.9.3",
     "@apollo/subgraph": "^2.4.1",
     "@as-integrations/aws-lambda": "^2.0.1",
     "@graphql-tools/load-files": "^6.6.1",
